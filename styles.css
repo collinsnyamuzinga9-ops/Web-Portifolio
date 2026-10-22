@@ -1,0 +1,203 @@
+:root {
+  --paper: #BFE1F6;
+  --ink: #0F2433;
+  --muted: #36536B;
+  --rule: #8FBBD9;
+  --green: #1F6B4A;
+  --accent: #0A4F93;
+  --gold: #D9A21B;
+  --red: #B83A2E;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --text: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--ink); }
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+p { margin: 0 0 1rem; }
+
+.wrap {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Colour strip: the four bands of the Zimbabwean flag, kept thin */
+.flag { display: flex; height: 6px; }
+.flag span { flex: 1; }
+.flag span:nth-child(1) { background: var(--green); }
+.flag span:nth-child(2) { background: var(--gold); }
+.flag span:nth-child(3) { background: var(--red); }
+.flag span:nth-child(4) { background: var(--ink); }
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  font-family: var(--display);
+  font-size: 1rem;
+}
+.topbar a { text-decoration: none; color: var(--ink); }
+.topbar a:hover { color: var(--accent); }
+.topbar nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.brand { font-weight: 700; }
+
+/* Hero */
+.hero { padding-top: 4rem; padding-bottom: 4.5rem; }
+.hero h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.lead {
+  max-width: 36rem;
+  margin-top: 1.75rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  line-height: 1.5;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  margin-top: 2rem;
+  font-family: var(--display);
+  font-weight: 600;
+}
+.button {
+  display: inline-block;
+  padding: 0.65rem 1.2rem;
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  border-radius: 3px;
+}
+.button:hover { background: var(--ink); color: var(--paper); }
+
+/* Sections: heading in the left column, content on the right */
+.section {
+  display: grid;
+  gap: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--rule);
+}
+.section h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.body { max-width: 40rem; }
+
+@media (min-width: 48rem) {
+  .section {
+    grid-template-columns: 12rem 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Skills */
+.facts { margin: 0; display: grid; gap: 0.25rem 2rem; max-width: 40rem; }
+.facts dt { font-family: var(--display); font-weight: 600; }
+.facts dd { margin: 0 0 0.75rem; }
+@media (min-width: 48rem) {
+  .facts { grid-template-columns: 11rem 1fr; }
+  .facts dd { margin-bottom: 0.5rem; }
+}
+
+/* Projects: a ruled list, not a grid of cards */
+.project {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.project:first-child { padding-top: 0; }
+.project:last-child { border-bottom: 0; padding-bottom: 0; }
+.project h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.project p { margin-bottom: 0.5rem; }
+.project .tools { color: var(--muted); font-size: 1rem; }
+
+.footer {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 1rem;
+}
+.footer p { margin: 0; }
+
+/* Skip link: visible only when focused by keyboard */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--display);
+  text-decoration: none;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+.skip:hover { color: var(--paper); }
+
+/* The lead project gets more room than the rest */
+.project.featured h3 { font-size: 1.6rem; }
+.project.featured p:not(.tools) { font-size: 1.2rem; }
+
+/* Portrait: sits beside the intro on wide screens, below it on phones */
+.hero { display: grid; gap: 2.5rem; }
+.portrait {
+  display: block;
+  width: 100%;
+  max-width: 18rem;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+@media (min-width: 48rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    align-items: center;
+    gap: 3rem;
+  }
+}
